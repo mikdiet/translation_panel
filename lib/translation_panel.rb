@@ -1,0 +1,2 @@
+module TranslationPanel
+end
