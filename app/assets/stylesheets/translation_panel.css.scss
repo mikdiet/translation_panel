@@ -1,0 +1,53 @@
+#translator {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 25px;
+  width: 300px;
+  background: #f6a828;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 4px;
+  cursor: pointer;
+}
+
+#translator_form {
+  padding: 20px;
+  input { display:block; width:95%; }
+  #translator_key_span { font-weight: bold; }
+}
+
+.translator {
+  ul {
+    list-style-type: none;
+    margin:0;
+    padding: 10px 5px;
+    max-height:600px;
+    overflow: auto;
+    li {
+      a { display:block; }
+      span { display:block; padding: 0 0 5px 10px; }
+    }
+  }
+
+  .ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; }
+  .ui-dialog .ui-dialog-titlebar { padding: .4em 1em; position: relative;  }
+  .ui-dialog .ui-dialog-title { float: left; margin: .1em 16px .1em 0; } 
+  .ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
+  .ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
+  .ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
+  .ui-dialog .ui-dialog-content { position: relative; border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
+  .ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { float: right; }
+  .ui-dialog .ui-dialog-buttonpane button { margin: .5em .4em .5em 0; cursor: pointer; }
+  .ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
+  .ui-draggable .ui-dialog-titlebar { cursor: move; }
+
+  .ui-widget { font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif; font-size: 1.1em; }
+  .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif; font-size: 1em; }
+  .ui-widget-content { border: 1px solid #dddddd; background: #eeeeee; color: #333333; }
+  .ui-widget-content a { color: #333333; }
+  .ui-widget-header { border: 1px solid #e78f08; background: #f6a828; color: #ffffff; font-weight: bold; }
+  .ui-widget-header a { color: #ffffff; }
+}

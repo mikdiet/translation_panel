@@ -7,7 +7,7 @@ rescue LoadError
 end
 
 require 'rake'
-require 'rake/rdoctask'
+require 'rdoc/task'
 
 require 'rspec/core'
 require 'rspec/core/rake_task'
@@ -30,8 +30,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "translation_panel"
   gem.homepage = "http://github.com/Mik_Die/translation_panel"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{I18n backend}
+  gem.description = %Q{I18n backend, based on redis, with frontend panel for translations}
   gem.email = "MikDiet@gmail.com"
   gem.authors = ["Mik_Die"]
   # dependencies defined in Gemfile
