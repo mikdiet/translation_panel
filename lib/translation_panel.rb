@@ -1,3 +1,4 @@
+require "translation_panel/engine"
 require "translation_panel/filter"
 require "translation_panel/redis_backend"
 
