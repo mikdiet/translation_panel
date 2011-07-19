@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Mik_Die}]
+  s.authors = [%q{Mik-die}]
   s.date = %q{2011-07-19}
   s.description = %q{I18n backend, based on redis, with frontend panel for translations}
   s.email = %q{MikDiet@gmail.com}
@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
     "spec/translation_panel_spec.rb",
     "translation_panel.gemspec"
   ]
-  s.homepage = %q{http://github.com/Mik_Die/translation_panel}
+  s.homepage = %q{http://github.com/Mik-die/translation_panel}
   s.licenses = [%q{MIT}]
   s.require_paths = [%q{lib}]
   s.rubygems_version = %q{1.8.5}
