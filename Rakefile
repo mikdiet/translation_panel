@@ -28,12 +28,12 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "translation_panel"
-  gem.homepage = "http://github.com/Mik_Die/translation_panel"
+  gem.homepage = "http://github.com/Mik-die/translation_panel"
   gem.license = "MIT"
   gem.summary = %Q{I18n backend}
   gem.description = %Q{I18n backend, based on redis, with frontend panel for translations}
   gem.email = "MikDiet@gmail.com"
-  gem.authors = ["Mik_Die"]
+  gem.authors = ["Mik-die"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
