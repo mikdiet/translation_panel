@@ -127,7 +127,7 @@ PLATFORMS
 DEPENDENCIES
   capybara (>= 0.4.0)
   jeweler
-  rails (>= 3.1.0.rc4)
+  rails (>= 3.0.0)
   redis
   rspec-rails (>= 2.0.0.beta)
   yajl-ruby
