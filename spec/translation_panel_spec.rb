@@ -51,21 +51,3 @@ describe HomeController, :type => :controller do
     end
   end
 end
-
-describe Admin::TranslationsController, :type => :controller do
-  describe "new" do
-    before :all do
-      I18n.backend.store.flushdb
-    end
-    
-    it "saves new translation" do
-      get :new, :locale => "ru", :key => "some.key", :value => "some_value"
-      I18n.t("some.key", :locale => "ru").should == "some_value"
-    end
-    
-    it 'updates existing translation' do
-      get :new, :locale => "ru", :key => "some.key", :value => "other_value"
-      I18n.t("some.key", :locale => "ru").should == "other_value"
-    end
-  end
-end

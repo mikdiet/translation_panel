@@ -1,10 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  respond_to :html
-  around_filter TranslationPanel::Filter.new('/admin/translations/new', :show_translator?)
+  around_filter TranslationPanel::Filter.new
 
 protected
-  def show_translator?
+  def translation_panel?
     params[:translator].present?
   end
 end

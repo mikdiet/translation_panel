@@ -2,9 +2,9 @@ module TranslationPanel
   class Filter
     include ActionView::Helpers::TagHelper
 
-    def initialize(save_url, condition = true)
-      @save_url = save_url
-      @condition = condition
+    def initialize
+      @save_url = '/translations/translations/new'
+      @condition = :translation_panel?
     end
 
     def before(controller)
