@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Mik-die}]
-  s.date = %q{2011-07-19}
+  s.date = %q{2011-07-20}
   s.description = %q{I18n backend, based on redis, with frontend panel for translations}
   s.email = %q{MikDiet@gmail.com}
   s.extra_rdoc_files = [
@@ -26,12 +26,14 @@ Gem::Specification.new do |s|
     "VERSION",
     "app/assets/javascripts/translation_panel.js.coffee",
     "app/assets/stylesheets/translation_panel.css.scss",
+    "app/controllers/translations/translations_controller.rb",
+    "config/routes.rb",
     "lib/generators/translation_panel/install_generator.rb",
     "lib/translation_panel.rb",
+    "lib/translation_panel/engine.rb",
     "lib/translation_panel/filter.rb",
     "lib/translation_panel/redis_backend.rb",
     "spec/app/.gitignore",
-    "spec/app/app/controllers/admin/translations_controller.rb",
     "spec/app/app/controllers/application_controller.rb",
     "spec/app/app/controllers/home_controller.rb",
     "spec/app/app/views/home/index.html.erb",

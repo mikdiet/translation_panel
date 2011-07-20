@@ -1,3 +1,18 @@
 = TranslationPanel
 
-This project rocks and uses MIT-LICENSE.
+Using with Redis:
+
+1. Run redis-server
+
+2. Set up redis connection settings and register RedisTranslator::Backend as
+i18n backend in initializers:
+    require 'redis_translator'
+    I18n.backend = RedisTranslator::Backend.new(Redis.new)
+    # or in chain with another backend
+
+3. Create predicate method +translation_panel?+ in ApplicationController,
+define in it, when panel can be shown and when translates can be saved. By
+default always.
+    def translation_panel?
+      params[:translator].present?
+    end

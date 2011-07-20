@@ -1,30 +1,6 @@
-require "translation_panel/engine"
 require "translation_panel/filter"
 require "translation_panel/redis_backend"
-
-# Using with Redis:
-# 1. Run redis-server
-# 2. Set up redis connection settings and register RedisTranslator::Backend as
-# i18n backend in initializers:
-#     require 'redis_translator'
-#     I18n.backend = RedisTranslator::Backend.new(Redis.new)
-#     # or in chain with another backend
-# 3. Create action which receive translation pair and saves it. Don't forget to
-# create route for GET-requests to this action
-#     class Admin::TranslationsController < ApplicationController
-#       def new
-#         I18n.backend.store_translations params[:locale], {params[:key] => params[:value]},
-#             :escape => false
-#         render :text => 'ok', :content_type => "text/plain"
-#       end
-#     end
-# 4. Create around filter for actions, where needed to show TranslationPanel
-# frontend panel. Initializator receives path for action and condition. 
-#     around_filter TranslationPanel::Filter.new('/admin/translations/new', :show_panel?)
-# 5. TranslationPanel's javascript and stylesheet can be customized by copying
-# necessary files from +app/assets+ to app's +vendor/assets+. It can be done
-# automatically by run:
-#     $ rails generate redis_translator:install
+require "translation_panel/engine"
 
 module TranslationPanel
   class << self

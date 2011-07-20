@@ -5,7 +5,6 @@ gem 'redis'
 gem 'yajl-ruby'
 
 group :development, :test do
-  gem "sqlite3"
   gem "capybara", ">= 0.4.0"
   gem "rspec-rails", ">= 2.0.0.beta"
   gem "jeweler"
