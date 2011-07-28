@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Mik-die}]
-  s.date = %q{2011-07-20}
+  s.date = %q{2011-07-28}
   s.description = %q{I18n backend, based on redis, with frontend panel for translations}
   s.email = %q{MikDiet@gmail.com}
   s.extra_rdoc_files = [
@@ -67,14 +67,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, [">= 3.1.0.rc4"])
-      s.add_runtime_dependency(%q<redis>, [">= 0"])
-      s.add_runtime_dependency(%q<yajl-ruby>, [">= 0"])
+      s.add_runtime_dependency(%q<rails>, [">= 3.0.0"])
+      s.add_development_dependency(%q<redis>, [">= 0"])
+      s.add_development_dependency(%q<yajl-ruby>, [">= 0"])
       s.add_development_dependency(%q<capybara>, [">= 0.4.0"])
       s.add_development_dependency(%q<rspec-rails>, [">= 2.0.0.beta"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, [">= 3.1.0.rc4"])
+      s.add_dependency(%q<rails>, [">= 3.0.0"])
       s.add_dependency(%q<redis>, [">= 0"])
       s.add_dependency(%q<yajl-ruby>, [">= 0"])
       s.add_dependency(%q<capybara>, [">= 0.4.0"])
@@ -82,7 +82,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, [">= 3.1.0.rc4"])
+    s.add_dependency(%q<rails>, [">= 3.0.0"])
     s.add_dependency(%q<redis>, [">= 0"])
     s.add_dependency(%q<yajl-ruby>, [">= 0"])
     s.add_dependency(%q<capybara>, [">= 0.4.0"])
