@@ -31,7 +31,7 @@ module TranslationPanel
     end
 
     def get_value(key)
-      I18n.translate! key
+      I18n.translate! key, :fallback => "no"
     rescue
       ""
     end
