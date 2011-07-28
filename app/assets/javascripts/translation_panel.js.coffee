@@ -8,7 +8,7 @@ $.translator = translator =
     translator.save_action = translationPanel.action
     translator
   render: ->
-    translator.container = $('<div id="translator"></div>').html("Open Translate Panel")
+    translator.container = $('<div id="translator"></div>').html("Open Translate Panel ("+ translator.locale + ")")
     translator.container.appendTo($('body'))
     translator.renderPanel().renderForm().setHandlers()
   renderPanel: ->
