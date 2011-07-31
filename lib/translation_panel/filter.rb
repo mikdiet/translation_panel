@@ -13,7 +13,7 @@ module TranslationPanel
     end
 
     def after(controller)
-      if controller.send(@condition)
+      if controller.send(@condition) && controller.response.status == 200
         case controller.response.content_type
         when "text/html"
           return unless page = controller.response.body
