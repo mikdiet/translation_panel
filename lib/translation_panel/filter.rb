@@ -17,6 +17,7 @@ module TranslationPanel
         case controller.response.content_type
         when "text/html"
           return unless page = controller.response.body
+          return unless page.index("</head>")
           header_part = tag :link, :href => "/assets/translation_panel.css",
                             :media => "screen", :rel => "stylesheet", :type => "text/css"
           header_part+= content_tag :script, "", :src => "/assets/translation_panel.js",

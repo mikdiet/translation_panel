@@ -50,4 +50,20 @@ describe HomeController, :type => :controller do
       end
     end
   end
+
+  describe "without_head" do
+    render_views
+    before :all do
+      I18n.backend.store.flushdb
+    end
+
+    it "is successfull" do
+      lambda{ get :without_head, :translator => true }.should_not raise_error
+    end
+
+    it "isn't show panel" do
+      get :without_head, :translator => true
+      response.body.should_not have_selector("script")
+    end
+  end
 end
