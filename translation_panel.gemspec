@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{translation_panel}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Mik-die}]
-  s.date = %q{2011-07-28}
+  s.authors = ["Mik-die"]
+  s.date = %q{2011-08-09}
   s.description = %q{I18n backend, based on redis, with frontend panel for translations}
   s.email = %q{MikDiet@gmail.com}
   s.extra_rdoc_files = [
@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "spec/app/app/controllers/application_controller.rb",
     "spec/app/app/controllers/home_controller.rb",
     "spec/app/app/views/home/index.html.erb",
+    "spec/app/app/views/home/without_head.html.erb",
     "spec/app/config.ru",
     "spec/app/config/application.rb",
     "spec/app/config/boot.rb",
@@ -58,9 +59,9 @@ Gem::Specification.new do |s|
     "translation_panel.gemspec"
   ]
   s.homepage = %q{http://github.com/Mik-die/translation_panel}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.5}
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{I18n backend}
 
   if s.respond_to? :specification_version then
