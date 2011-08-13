@@ -5,15 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{translation_panel}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mik-die"]
-  s.date = %q{2011-08-09}
+  s.date = %q{2011-08-13}
   s.description = %q{I18n backend, based on redis, with frontend panel for translations}
   s.email = %q{MikDiet@gmail.com}
   s.extra_rdoc_files = [
-    "README.rdoc"
+    "README.textile"
   ]
   s.files = [
     ".rspec",
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "MIT-LICENSE",
-    "README.rdoc",
+    "README.textile",
     "Rakefile",
     "VERSION",
     "app/assets/javascripts/translation_panel.js.coffee",
@@ -48,6 +48,9 @@ Gem::Specification.new do |s|
     "spec/app/config/initializers/i18n.rb",
     "spec/app/config/initializers/secret_token.rb",
     "spec/app/config/initializers/session_store.rb",
+    "spec/app/config/locales/en.yml",
+    "spec/app/config/locales/plural.rb",
+    "spec/app/config/locales/ru.yml",
     "spec/app/config/redis.yml",
     "spec/app/config/redis/test.conf",
     "spec/app/config/routes.rb",
