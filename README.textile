@@ -2,21 +2,25 @@ h1. TranslationPanel
 
 h3. Using with Redis:
 
-# Run redis-server
+* Run redis-server
 
-# Set up redis connection settings and register RedisTranslator::Backend as
+* Set up redis connection settings and register RedisTranslator::Backend as
 i18n backend in initializers:
 
+<pre><code>
     I18n.backend = TranslationPanel::RedisBackend.new(Redis.new)
     # or in chain with another backend
+</code></pre>
 
-# Create predicate method +translation_panel?+ in ApplicationController,
+* Create predicate method +translation_panel?+ in ApplicationController,
 define in it, when panel can be shown and when translates can be saved. By
 default always.
 
+<pre><code>
     def translation_panel?
       params[:translator].present?
     end
+</code></pre>
 
 h3. Dependencies
 
@@ -31,14 +35,18 @@ Redis backenâ support pluralization.
 
 1. You need to use Simple backend with included I18n::Pluralization in chain:
 
+<pre><code>
     I18n::Backend::Simple.include I18n::Backend::Pluralization
     redis_backend = TranslationPanel::RedisBackend.new(Redis.new)
     I18n.backend = I18n::Backend::Chain.new(redis_backend, I18n::Backend::Simple.new)
+</code></pre>
 
 2. You need to add in +config/locales/*.yml+ files rules for pluralization:
 
+<pre><code>
     i18n:
       plural:
         keys:
           - one
           - other
+</code></pre>
