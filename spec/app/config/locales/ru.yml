@@ -1,0 +1,8 @@
+ru:
+  some:
+    test:
+      one: %{count} тест
+      few: %{count} теста
+      other: %{count} тестов
+    missing:
+      one: %{count} пропажа

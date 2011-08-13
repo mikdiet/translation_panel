@@ -10,7 +10,7 @@ describe HomeController, :type => :controller do
   render_views
   describe "index" do
     before :all do
-      I18n.backend.store.flushdb
+      Redis_backend.store.flushdb
     end
 
     describe "normal processing" do
@@ -54,7 +54,7 @@ describe HomeController, :type => :controller do
   describe "without_head" do
     render_views
     before :all do
-      I18n.backend.store.flushdb
+      Redis_backend.store.flushdb
     end
 
     it "is successfull" do

@@ -3,6 +3,7 @@ require 'translation_panel'
 
 MultiJson.engine = :yajl
 
-redis = Redis.new(YAML::load_file(File.join(Rails.root, '/config/redis.yml'))[Rails.env].symbolize_keys)
-
-I18n.backend = TranslationPanel::RedisBackend.new(redis)
+I18n::Backend::Simple.include I18n::Backend::Pluralization
+r_conf = YAML::load_file(File.join(Rails.root, '/config/redis.yml'))[Rails.env].symbolize_keys
+Redis_backend = TranslationPanel::RedisBackend.new Redis.new(r_conf)
+I18n.backend = I18n::Backend::Chain.new Redis_backend, I18n::Backend::Simple.new

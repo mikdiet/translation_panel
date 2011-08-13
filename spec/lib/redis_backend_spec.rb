@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe TranslationPanel::RedisBackend do
   before :all do
-    I18n.backend.store.flushdb
+    Redis_backend.store.flushdb
   end
 
   it "stores data, represented by pair key-value" do
@@ -54,11 +54,33 @@ describe TranslationPanel::RedisBackend do
   it "pluralizes translations" do
     I18n.backend.store_translations "ru", :bug => {:one => "1 bug", :other => "%{count} bugs"}
     I18n.translate(:bug, :count => 1).should == "1 bug"
-    I18n.translate(:bug, :count => 2).should == "2 bugs"
+    I18n.translate(:bug, :count => 5).should == "5 bugs"
   end
 
   it 'deletes existing translation with nil value' do
     I18n.backend.store_translations "ru", "simple.key" => nil
-    I18n.backend.store["simple.key"].should be_nil
+    Redis_backend.store["simple.key"].should be_nil
+  end
+
+  describe "#pluralisation" do
+    it "translates from simple, if no keys in redis" do
+      I18n.translate("some.test", :count => 21).should == "21 тест"
+      I18n.translate("some.test", :count => 23).should == "23 теста"
+      I18n.translate("some.test", :count => 11).should == "11 тестов"
+    end
+
+    it "translates from redis, but absented keys takes from simple" do
+      I18n.backend.store_translations "ru", {"some.test.few" => "%{count} испытания"}, :escape => false
+      I18n.translate("some.test", :count => 21).should == "21 тест"
+      I18n.translate("some.test", :count => 23).should == "23 испытания"
+      I18n.translate("some.test", :count => 11).should == "11 тестов"
+    end
+
+    it "creates empty keys in redis if no such keys in both backends" do
+      I18n.backend.store_translations "ru", {"some.missing.few" => "%{count} пропажи"}, :escape => false
+      I18n.translate("some.missing", :count => 21).should == "21 пропажа"
+      I18n.translate("some.missing", :count => 23).should == "23 пропажи"
+      I18n.translate("some.missing", :count => 11).should == ""
+    end
   end
 end

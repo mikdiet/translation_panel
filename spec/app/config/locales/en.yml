@@ -1,0 +1,5 @@
+en:
+  some:
+    test:
+      one: One test
+      other: %{count} tests
