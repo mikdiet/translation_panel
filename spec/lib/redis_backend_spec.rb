@@ -82,5 +82,9 @@ describe TranslationPanel::RedisBackend do
       I18n.translate("some.missing", :count => 23).should == "23 пропажи"
       I18n.translate("some.missing", :count => 11).should == ""
     end
+
+    it "returns default value for empty translate" do
+      I18n.translate("all.missing", :count => 21, :default => "Abc").should == "Abc"
+    end
   end
 end

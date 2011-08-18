@@ -52,15 +52,23 @@ module TranslationPanel
     # Creates empty translations for absented pluralization keys.
     # Returns hash with plural keys and their values (even from another backend)
     def get_count_keys(locale, key)
-      I18n.t!('i18n.plural.keys', :locale => locale).inject({}) do |result, plural_key|
+      empty_translations = {}
+      store_empty_translations = false
+      count_keys = I18n.t!('i18n.plural.keys', :locale => locale).inject({}) do |result, plural_key|
         full_key = "#{key}.#{plural_key}"
         value = get_translate(locale, full_key)
-        unless value
-          I18n.backend.store_translations locale, {full_key => ""}, :escape => false
-          value = ""
+        if value
+          store_empty_translations = true
+          result.merge plural_key.to_s => value
+        else
+          empty_translations.merge! full_key => ""
+          result
         end
-        result.merge plural_key.to_s => value
       end
+      if store_empty_translations && empty_translations.present?
+        I18n.backend.store_translations locale, empty_translations, :escape => false
+      end
+      count_keys
     rescue
       {}
     end
