@@ -2,4 +2,4 @@ rvm:
   - 1.8.7
   - 1.9.2
 before_script:
-  - "redis-server spec/config/redis/test.conf"
+  - "redis-server /home/vagrant/builds/Mik-die/translation_panel/spec/config/redis/test.conf"
