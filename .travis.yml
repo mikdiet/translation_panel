@@ -1,7 +1,5 @@
 rvm:
   - 1.8.7
   - 1.9.2
-env:
-  - DB=redis
-recipes:
-  - redis
+before_script:
+  - "redis-server spec/config/redis/test.conf"
