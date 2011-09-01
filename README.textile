@@ -1,5 +1,4 @@
-h1.
-"!https://secure.travis-ci.org/Mik-die/translation_panel.png!":http://travis-ci.org/Mik-die/translation_panel TranslationPanel
+h1. "!https://secure.travis-ci.org/Mik-die/translation_panel.png!":http://travis-ci.org/Mik-die/translation_panel TranslationPanel
 
 h3. Using with Redis:
 
