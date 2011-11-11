@@ -1,6 +1,8 @@
-h1. "!https://secure.travis-ci.org/Mik-die/translation_panel.png!":http://travis-ci.org/Mik-die/translation_panel TranslationPanel
+h1. TranslationPanel "!https://secure.travis-ci.org/Mik-die/translation_panel.png!":http://travis-ci.org/Mik-die/translation_panel
 
 h3. Using with Redis:
+
+* Add +gem 'translation_panel'+ in your Gemfile
 
 * Run redis-server
 
@@ -22,11 +24,19 @@ default always.
     end
 </code></pre>
 
+* Wrap your translations in span with 'data-tranlation-key' attribute, if you
+want to highlight your translation, and edit-on-click. Eg (in haml format):
+
+<pre><code>
+    %span{:data => {'tranlation-key' => "some.key"}}
+        = t("some.key")
+</code></pre>
+
 h3. Dependencies
 
 TranslationPanel uses assets, scss, coffeescript, as all its work in Rails 3.1.
 
-If you want to use panel with Rails 3.0, you need to use sprockets gem. Also you 
+If you want to use panel with Rails 3.0, you need to use sprockets gem. Also you
 need at least i18n-0.6.0 for proper work with i18n keys
 
 h3. Pluralization

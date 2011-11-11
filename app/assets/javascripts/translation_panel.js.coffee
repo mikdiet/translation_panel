@@ -6,11 +6,12 @@ $.translator = translator =
     translator.translatesData = translationPanel.translates || []
     translator.locale = translationPanel.locale
     translator.save_action = translationPanel.action
+    translator.highlight = translationPanel.highlight
     translator
   render: ->
     translator.container = $('<div id="translator"></div>').html("Open Translate Panel ("+ translator.locale + ")")
     translator.container.appendTo($('body'))
-    translator.renderPanel().renderForm().setHandlers()
+    translator.renderPanel().renderForm().setHandlers().light()
   renderPanel: ->
     translator.panel = $('<div id="translator_panel"><ul/></div>').appendTo($('body')).dialog
       autoOpen: false
@@ -60,22 +61,19 @@ $.translator = translator =
       width: 450
     translator
   setHandlers: ->
-    translator.container.click -> 
+    translator.container.click ->
       if translator.panel.dialog('isOpen')
         translator.panel.dialog('close')
       else
         translator.panel.dialog('open')
     translator.panel.find('li a').click ->
-      translator.form.dialog('open') unless translator.form.dialog('isOpen')
-      $('#translator_key_span').html $(this).html()
-      $('#translator_key').val $(this).html()
-      $('#translator_value').val translator.translates[$(this).html()].value
+      translator.fillForm $(this).html()
       false
     translator.form.submit ->
       request = $.ajax
         url: translator.form.attr('action')
         data: translator.form.serializeArray()
-        success: (data, textStatus, jqXHR) -> 
+        success: (data, textStatus, jqXHR) ->
           jqXHR.translate.change_translate()
         error: (jqXHR, status) ->
           jqXHR.translate.element.find('span').html('<i>Error!! ('+status+')</i>')
@@ -84,5 +82,25 @@ $.translator = translator =
       request.translate.element.find('span').html('<i>saving..</i>')
       translator.form.dialog('close')
       false
+    translator
+  fillForm: (key) ->
+    translator.form.dialog('open') unless translator.form.dialog('isOpen')
+    $('#translator_key_span').html key
+    $('#translator_key').val key
+    $('#translator_value').val translator.translates[key].value
+  light: ->
+    caption = if translator.highlight then 'Disable translations highlighting' else 'Enable translations highlighting'
+    $('<a class="highlight_toggle" href="' + translator.hlink() + '">' + caption + '</a>').prependTo translator.panel
+    if translator.highlight
+      $('body').addClass 'translation_highlight'
+      $(document).delegate 'span[data-tranlation-key]', 'click', ->
+        translator.fillForm $(this).data('tranlation-key')
+        false
+
+  hlink: ->
+    current = document.location.href.split('#')[0]
+    current += if current.indexOf('?')>0 then '&' else '?'
+    current += 'enable_translation_highlight='
+    current += if translator.highlight then '0' else '1'
 
 $ -> $.translator.initialize()

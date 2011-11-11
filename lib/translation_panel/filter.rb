@@ -8,7 +8,12 @@ module TranslationPanel
     end
 
     def before(controller)
-      TranslationPanel.show! if controller.send(@condition)
+      if controller.send(@condition)
+        TranslationPanel.show!
+        if highlight = controller.params[:enable_translation_highlight]
+          controller.session[:translation_highlight] = highlight == '1'
+        end
+      end
       true
     end
 
@@ -23,9 +28,9 @@ module TranslationPanel
           header_part+= content_tag :script, "", :src => "/assets/translation_panel.js",
                             :type => "text/javascript"
           page.insert page.index("</head>"), header_part
-          body_part = content_tag :script,
-                            "translationPanel = {translates: #{TranslationPanel.values.to_json}, action: '#{@save_url}', locale: '#{I18n.locale}'}",
-                            {:type => "text/javascript"}, false
+          panel_params = {:translates => TranslationPanel.values, :action => @save_url, :locale => I18n.locale,
+                          :highlight => controller.session[:translation_highlight]}
+          body_part = content_tag :script, "translationPanel = #{panel_params.to_json}", {:type => "text/javascript"}, false
           page+= body_part
           controller.response.body = page
         when "text/javascript"
