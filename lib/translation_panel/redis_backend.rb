@@ -2,6 +2,8 @@ module TranslationPanel
   class RedisBackend < I18n::Backend::KeyValue
     include I18n::Backend::Pluralization
 
+    attr_reader :store
+
     def initialize(store)
       @subtrees = false
       @store = store
