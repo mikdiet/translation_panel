@@ -13,7 +13,8 @@ module TranslationPanel
     def lookup(locale, key, scope = [], options = {})
       key = normalize_flat_keys(locale, key, scope, options[:separator])
       count = options[:count]
-      if !count && (value = @store["#{locale}.#{key}"]) && (decoded = decode(value))
+      value = @store["#{locale}.#{key}"]
+      if !count && value && (decoded = decode(value))
         TranslationPanel.push key if TranslationPanel.show?
         decoded
       else  # look in namespace
