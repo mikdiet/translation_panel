@@ -2,7 +2,6 @@ class RedisTranslate
   include ActiveModel::Conversion
   include ActiveModel::Validations
   extend ActiveModel::Naming
-  extend ActiveSupport::Concern
 
   attr_accessor :id, :locale, :key, :value
   attr_accessor :attributes, :persisted
@@ -23,7 +22,7 @@ class RedisTranslate
       if options.present? || find_what.is_a?(Symbol)
         # if id and options in params, first find for all ids for options and next find id in results
         unless find_what.is_a? Symbol
-          options.merge :id => find_what.to_s
+          options.merge! :id => find_what.to_s
           find_what = :first
         end
 
@@ -56,7 +55,7 @@ class RedisTranslate
           record.persisted = true
           record
         else
-          raise "record not found"
+          nil
         end
       end
     end
@@ -66,6 +65,10 @@ class RedisTranslate
     end
   end  # self
 
+  def ==(other)
+    id == other.id
+  end
+
   def attributes=(value = {})
     value.each do |name, value|
       send("#{name}=", value)
@@ -73,7 +76,7 @@ class RedisTranslate
   end
 
   def id=(value)
-    @id = value
+    @id = value.to_s
     @locale, @key = value.partition('.').values_at(0, 2)
   end
 
@@ -81,8 +84,22 @@ class RedisTranslate
     self.attributes = attributes
   end
 
+  def key=(value)
+    @key = value.to_s
+    reset_id
+  end
+
+  def locale=(value)
+    @locale = value.to_s
+    reset_id
+  end
+
   def persisted?
     !!@persisted
+  end
+
+  def reset_id
+    @id = "#{@locale}.#{@key}"
   end
 
   def save

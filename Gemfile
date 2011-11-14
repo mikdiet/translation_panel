@@ -8,4 +8,5 @@ group :development, :test do
   gem "capybara", ">= 0.4.0"
   gem "rspec-rails", ">= 2.0.0.beta"
   gem "jeweler"
+  gem 'ruby-debug19' if RUBY_VERSION == "1.9.2"
 end
