@@ -6,7 +6,7 @@ class RedisTranslate
   attr_accessor :id, :locale, :key, :value
   attr_accessor :attributes, :persisted
 
-  validates :id, :locale, :key, :value, :presence => true
+  validates :id, :locale, :key, :presence => true
   #validates :id, :unique => true
 
   class << self
@@ -105,7 +105,7 @@ class RedisTranslate
   def save
     if valid?
       self.class.store[@id] = ActiveSupport::JSON.encode(@value)
-      true
+      self.persisted = true
     else
       false
     end

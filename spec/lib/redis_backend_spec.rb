@@ -57,9 +57,9 @@ describe TranslationPanel::RedisBackend do
     I18n.translate(:bug, :count => 5).should == "5 bugs"
   end
 
-  it 'deletes existing translation with nil value' do
-    I18n.backend.store_translations "ru", "simple.key" => nil
-    Redis_backend.store["simple.key"].should be_nil
+  it 'nullifies existing translation with nil value' do
+    I18n.backend.store_translations "ru", {"simple.key" => nil}, :escape => false
+    Redis_backend.store["ru.simple.key"].should == 'null'
   end
 
   describe "#pluralisation" do
@@ -85,6 +85,18 @@ describe TranslationPanel::RedisBackend do
 
     it "returns default value for empty translate" do
       I18n.translate("all.missing", :count => 21, :default => "Abc").should == "Abc"
+    end
+  end
+
+  describe "absent keys" do
+    it "creates nil key" do
+      I18n.translate("absent.key")
+      Redis_backend.store['ru.absent.key'].should_not be_nil
+    end
+
+    it 'ignores nil key if it is namespace' do
+      I18n.backend.store_translations "ru", {"absent.key.secret" => "Secret!"}, :escape => false
+      I18n.translate("absent.key").should == {:secret => "Secret!"}
     end
   end
 end

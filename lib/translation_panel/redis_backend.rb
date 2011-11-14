@@ -13,26 +13,30 @@ module TranslationPanel
     def lookup(locale, key, scope = [], options = {})
       key = normalize_flat_keys(locale, key, scope, options[:separator])
       count = options[:count]
-      if !count && value = @store["#{locale}.#{key}"]
+      if !count && (value = @store["#{locale}.#{key}"]) && (decoded = decode(value))
         TranslationPanel.push key if TranslationPanel.show?
-        ActiveSupport::JSON.decode(value) if value
+        decoded
       else  # look in namespace
         pluralization_result = count ? get_count_keys(locale, key) : {}
         full_keys = @store.keys "#{locale}.#{key}.*"
         if full_keys.empty?
           TranslationPanel.push key if TranslationPanel.show?
+          I18n.backend.store_translations(locale, {key => nil}, :escape => false) unless value
           nil
         else
           keys = full_keys.map{ |full_key| full_key.partition("#{locale}.")[2] }
           TranslationPanel.push keys if TranslationPanel.show?
           flatten_result = full_keys.inject({}) do |result, full_key|
             value = @store[full_key]
-            value = ActiveSupport::JSON.decode(value) if value
-            result.merge full_key.partition("#{locale}.#{key}.")[2] => value
+            result.merge full_key.partition("#{locale}.#{key}.")[2] => decode(value)
           end
           expand_keys(pluralization_result.merge(flatten_result)).deep_symbolize_keys
         end
       end
+    end
+
+    def decode(value)
+      ActiveSupport::JSON.decode(value)
     end
 
     # Transforms flatten hash into nested hash
